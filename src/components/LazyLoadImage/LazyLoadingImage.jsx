@@ -1,0 +1,17 @@
+import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+const LazyLoadingImage = ({ imgUrl, imgwidth, imgheight }) => {
+	return (
+			<LazyLoadImage
+                width={imgwidth}
+                height={imgheight}
+				src={imgUrl}
+				effect="blur"
+                className="movieCardImage"
+			/>
+	);
+};
+
+export default LazyLoadingImage;
