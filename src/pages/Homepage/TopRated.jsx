@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useFetchData from '../../hooks/useFetchData'
-import MovieCard from '../../components/movieCard/movieCard'
+import MovieCard from "../../components/movieCard/MovieCard";
 import {FaArrowLeft, FaArrowRight} from 'react-icons/fa'
 
 const TopRated = () => {
