@@ -4,12 +4,16 @@ export default {
 	theme: {
 		screens: {
 			"mid-l": { raw: "(max-width: 1250px)" },
-            'mid-xl': {raw: '(max-width: 900px)'},
-            'xl': {raw: '(max-width: 600px)'},
-            'lg': {raw: '(max-width: 500px)'},
-            'l': {raw: '(max-width: 400px)'},
-            'mid-sm': {raw: '(max-width: 350px)'},
-            'sm': {raw: '(max-width: 300px)'}
+			"mid-x": { raw: "(max-width: 1100px)" },
+			"mid-sl": { raw: "(max-width: 1000px)" },
+			"mid-xl": { raw: "(max-width: 900px)" },
+			"min-l": { raw: "(max-width: 850px)" },
+			"min-sl": { raw: "(max-width: 700px)" },
+			xl: { raw: "(max-width: 600px)" },
+			lg: { raw: "(max-width: 500px)" },
+			l: { raw: "(max-width: 400px)" },
+			"mid-sm": { raw: "(max-width: 350px)" },
+			sm: { raw: "(max-width: 300px)" },
 		},
 		extend: {
 			fontFamily: {
