@@ -36,6 +36,7 @@ const DetailsPage = () => {
 
 	const hidePopup = () => {
 		setShowVideo(false);
+        setVideoId(null);
 	};
 
 	return (
