@@ -3,19 +3,27 @@ import HomePage from "./pages/Homepage/HomePage"
 import Navbar from "./components/Navbar/Navbar"
 import DetailsPage from "./pages/Details/DetailsPage"
 import VideoPopUp from "./components/videoPopUp/VideoPopUp"
+import Testing from "./Testing";
+import Sidebar from "./components/sidebar/Sidebar";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
-
-  return (
-    <>
-        <Navbar/>
-        <Routes>
-            <Route path="/" element={<HomePage/>}/>
-            {/* <Route path="/movies" element={<h1>Movies</h1>}/> */}
-            <Route path="/:mediaType/:id" element={<DetailsPage/>}/>
-        </Routes>
-    </>
-  )
+	return (
+		<>
+			<Navbar />
+			<div className="relative">
+				<Sidebar />
+				<div className="content">
+					<Routes>
+						<Route path="/" element={<HomePage />} />
+						<Route path="/movies" element={<Testing />} />
+						<Route path="/:mediaType/:id" element={<DetailsPage />} />
+					</Routes>
+				</div>
+			</div>
+		</>
+	);
 }
 
 

@@ -44,6 +44,11 @@ nav .search-box input::placeholder {
 	color: #068fff;
 }
 
+.activeTab{
+    background: #f89e00;
+    transition: all .3s ease-in;
+}
+
 .movieCardImage {
 	border-radius: 10px;
 }
