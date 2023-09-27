@@ -13,6 +13,7 @@ export default {
 			"min-sl": { raw: "(max-width: 700px)" },
 			xl: { raw: "(max-width: 600px)" },
 			lg: { raw: "(max-width: 500px)" },
+			"min-l": { raw: "(max-width: 450px)" },
 			l: { raw: "(max-width: 400px)" },
 			"mid-sm": { raw: "(max-width: 350px)" },
 			sm: { raw: "(max-width: 300px)" },

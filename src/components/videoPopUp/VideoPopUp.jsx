@@ -6,7 +6,7 @@ const VideoPopUp = ({ showVideo, videoId, hidePopup }) => {
 	return (
 		<div className={`videoPopUp ${showVideo ? "active" : "hidden"}`}>
 			<div className="opacityLayer" onClick={hidePopup}></div>
-			<div className="videoPlayer">
+			<div className="videoPlayer l:mx-[5px]">
 				<span className="closeBtn" onClick={hidePopup}>
 					<IoMdClose />
 				</span>

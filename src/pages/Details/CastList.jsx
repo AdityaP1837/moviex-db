@@ -5,7 +5,7 @@ const CastList = ({data}) => {
     const newData = data?.cast?.filter(item => item.order < 10)
 
   return (
-		<div className="Casts px-[10px] py-[20px] lg:pt-0">
+		<div className="Casts px-[10px] py-[20px] lg:p-0 lg:pb-[20px]">
 			<div className="title text-white text-3xl">
 				<h3>Casts</h3>
 			</div>

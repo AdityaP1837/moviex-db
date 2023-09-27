@@ -4,7 +4,7 @@ import {FaPlay} from 'react-icons/fa'
 
 const VideosList = ({ data, setVideoId, setShowVideo }) => {
 	return (
-		<div className="Videos px-[10px] py-[20px]">
+		<div className="Videos px-[10px] py-[20px] lg:p-0 lg:pb-[20px]">
 			<div className="title text-white text-3xl">
 				<h3>Official Videos</h3>
 			</div>

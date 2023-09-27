@@ -36,12 +36,12 @@ const DetailsPage = () => {
 
 	const hidePopup = () => {
 		setShowVideo(false);
-        setVideoId(null);
+		setVideoId(null);
 	};
 
 	return (
 		<div className={`w-[100%] h-[100vh]`}>
-			<div className="backdrop w-full h-full absolute top-[60px] left-0 opacity-10 overflow-hidden">
+			<div className="backdrop w-full h-full absolute top-[60px] left-0 opacity-10 overflow-hidden z-[2]">
 				<img
 					className="object-cover w-full h-full"
 					src={"https://image.tmdb.org/t/p/original" + data.backdrop_path}
@@ -127,7 +127,7 @@ const DetailsPage = () => {
 						<div className="credits">
 							<div className="flex items-center py-[15px] lg:flex-wrap gap-[20px]">
 								<CreditsRow title="Status:" value={data.status} />
-								{!mediaType == "tv" ? (
+								{mediaType == "movie" ? (
 									<CreditsRow
 										title="Release Date:"
 										value={dateConverter(data.release_date)}
@@ -138,7 +138,7 @@ const DetailsPage = () => {
 										value={`${dateConverter(data.first_air_date)}`}
 									/>
 								)}
-								{!mediaType == "tv" ? (
+								{mediaType == "movie" ? (
 									<CreditsRow
 										title="Runtime:"
 										value={runtimeModify(data.runtime)}
@@ -149,7 +149,16 @@ const DetailsPage = () => {
 							</div>
 							<div className="flex items-center py-[15px]">
 								<div className="itemContainer flex items-center mr-[25px] text-white">
-									{!mediaType == "tv" ? (
+									{mediaType == "tv" ? (
+										<>
+											<h4 className="item mr-[5px] opacity-100">Created By:</h4>
+											<h4 className="item opacity-50">
+												{data?.created_by?.map((c) => (
+													<span key={c.id}>{c.name}</span>
+												))}
+											</h4>
+										</>
+									) : (
 										<>
 											<h4 className="item mr-[5px] opacity-100">Director:</h4>
 											<h4 className="item opacity-50">
@@ -158,15 +167,6 @@ const DetailsPage = () => {
 														{d.name}
 														{directorList.length - 1 !== i && ", "}
 													</span>
-												))}
-											</h4>
-										</>
-									) : (
-										<>
-											<h4 className="item mr-[5px] opacity-100">Created By:</h4>
-											<h4 className="item opacity-50">
-												{data?.created_by?.map((c) => (
-													<span key={c.id}>{c.name}</span>
 												))}
 											</h4>
 										</>

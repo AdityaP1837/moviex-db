@@ -7,17 +7,30 @@ import Testing from "./Testing";
 import Sidebar from "./components/sidebar/Sidebar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useState } from "react";
 
 function App() {
+	const [sidebarActive, setSidebarActive] = useState(false);
+
+	const toggleSidebarActive = () => {
+		setSidebarActive(true);
+	};
+	const toggleSidebarNotActive = () => {
+		setSidebarActive(false);
+	};
+
 	return (
 		<>
-			<Navbar />
-			<div className="relative">
-				<Sidebar />
+			<Navbar
+				sidebarActive={sidebarActive}
+				toggleSidebarActive={toggleSidebarActive}
+				toggleSidebarNotActive={toggleSidebarNotActive}
+			/>
+			<div className="">
 				<div className="content">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
-						<Route path="/movies" element={<Testing />} />
+						<Route path="/movies" element={<h1>Lol</h1>} />
 						<Route path="/:mediaType/:id" element={<DetailsPage />} />
 					</Routes>
 				</div>
