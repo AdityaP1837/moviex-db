@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar"
 import DetailsPage from "./pages/Details/DetailsPage"
 import VideoPopUp from "./components/videoPopUp/VideoPopUp"
 import Testing from "./Testing";
-import Sidebar from "./components/sidebar/Sidebar";
+//import Sidebar from "./components/sidebar/Sidebar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
