@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar"
 import DetailsPage from "./pages/Details/DetailsPage"
 import VideoPopUp from "./components/videoPopUp/VideoPopUp"
 import Testing from "./Testing";
-//import Sidebar from "./components/sidebar/Sidebar";
+import Sidebar from "./components/sidebar/Sidebar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
@@ -30,7 +30,7 @@ function App() {
 				<div className="content">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
-						<Route path="/movies" element={<h1>Lol</h1>} />
+						<Route path="/movies" element={<Sidebar/>} />
 						<Route path="/:mediaType/:id" element={<DetailsPage />} />
 					</Routes>
 				</div>
