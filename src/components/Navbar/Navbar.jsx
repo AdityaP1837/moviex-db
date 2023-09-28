@@ -82,21 +82,21 @@ const Navbar = ({
 					sidebarActive ? "fixed" : "hidden"
 				} mobileSearchBar w-full z-[1]`}
 			>
-				<div className="bg-black mx-1 mt-[10px] rounded-[10px] py-[5px]">
+				<div className="bg-pink mx-1 mt-[10px] rounded-[10px] py-[5px]">
 					<ul className="flex items-center justify-between list-none gap-y-[50px] ">
-						<li className="text-pink text-3xl text-center mx-auto flex flex-col items-center gap-1">
+						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
 							<FaHome />
 							<span className="text-[18px] text-white">Home</span>
 						</li>
-						<li className="text-pink text-3xl text-center mx-auto flex flex-col items-center gap-1">
+						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
 							<BiSolidMoviePlay />
 							<span className="text-[18px] text-white">Browse Movies</span>
 						</li>
-						<li className="text-pink text-3xl text-center mx-auto flex flex-col items-center gap-1">
+						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
 							<PiTelevisionSimpleFill />
 							<span className="text-[18px] text-white">Browse Tv Shows</span>
 						</li>
-						<li className="text-pink text-3xl text-center mx-auto flex flex-col items-center gap-1">
+						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
 							<BiCalendar />
 							<span className="text-[18px] text-white">Upcoming</span>
 						</li>
