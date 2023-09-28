@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom"
 import HomePage from "./pages/Homepage/HomePage"
 import Navbar from "./components/Navbar/Navbar"
-import DetailsPage from "./pages/Details/DetailsPage"
-import VideoPopUp from "./components/videoPopUp/VideoPopUp"
-import Testing from "./Testing";
+import DetailsPage from "./pages/Details/DetailsPage";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
+import SearchResults from "./pages/SearchResults/SearchResults";
+import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
 
 function App() {
 	const [sidebarActive, setSidebarActive] = useState(false);
@@ -30,6 +30,15 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/movies" element={<h1>Lol</h1>} />
+						<Route
+							path="/search/:query"
+							element={
+								<ContentWrapper
+									id={"SearchedData"}
+									content={<SearchResults />}
+								/>
+							}
+						/>
 						<Route path="/:mediaType/:id" element={<DetailsPage />} />
 					</Routes>
 				</div>

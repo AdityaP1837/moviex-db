@@ -17,8 +17,11 @@ const CastList = ({data}) => {
 								<div className="img w-[175px] h-[175px] mid-sl:w-[150px] mid-sl:h-[150px] lg:w-[110px] lg:h-[110px] overflow-hidden rounded-[50%]">
 									<LazyLoadingImage
 										imgUrl={
-											"https://image.tmdb.org/t/p/original" +
-											castItem.profile_path
+											castItem.profile_path == null ||
+											castItem.profile_path == undefined
+												? "/avatar.png"
+												: "https://image.tmdb.org/t/p/original" +
+												  castItem.profile_path
 										}
 										imgwidth={"100%"}
 										imgheight={"100%"}

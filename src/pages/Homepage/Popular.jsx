@@ -25,6 +25,7 @@ const Popular = () => {
 				activeTab={activeTab}
 				onTabChange={onTabChange}
 				values={["movie", "tv"]}
+				mediaType={activeTab == "movie" ? "movie" : "tv"}
 			/>
 		</div>
 	);

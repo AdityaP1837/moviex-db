@@ -16,14 +16,10 @@ const MovieCard = ({ imgUrl, title, releaseDate, rating, mediaType, id }) => {
 				className="image rounded-[10px] cursor-pointer"
 				onClick={() => navigate(`/${mediaType}/${id}`)}
 			>
-				<LazyLoadingImage
-					imgUrl={imgUrl == "" ? "src/assests/no-poster.png" : imgUrl}
-					imgwidth="100%"
-					imgheight="100%"
-				/>
+				<LazyLoadingImage imgUrl={imgUrl} imgwidth="100%" imgheight="100%" />
 			</div>
 			<div className="info">
-				<div className="rating">
+				<div className={`rating ${rating == "no" ? "hidden" : ""}`}>
 					<h3 className="absolute bottom-[48px] left-[-12px] text-red-600 p-[5px] rounded-tl-[10px] rounded-br-[20px] text-center font-bold text-[1.2rem] w-[55px] l:w-[50px] l:bottom-[52px] mid-sm:w-[45px] mid-sm:bottom-[49px]">
 						<CircularProgressbar
 							className="circularProgress"
@@ -42,13 +38,17 @@ const MovieCard = ({ imgUrl, title, releaseDate, rating, mediaType, id }) => {
 					</h3>
 				</div>
 				<div className="title">
-					<h3 className="text-orangeText l:w-[115px] l:text-[16px] mid-sm:text-[15px] mid-sm:w-[105px] mid-sm:mt-[5px] text-[18px] ml-[5px] mt-[10px] mb-[5px] w-[185px] font-bold overflow-hidden text-ellipsis whitespace-nowrap">
+					<h3 className="text-orangeText min-l:w-[165px] l:w-[115px] l:text-[16px] mid-sm:text-[15px] mid-sm:w-[105px] mid-sm:mt-[5px] text-[18px] ml-[5px] mt-[10px] mb-[5px] w-[185px] font-bold overflow-hidden text-ellipsis whitespace-nowrap">
 						{title}
 					</h3>
 				</div>
 				<div className="release">
 					<h3 className="text-orangeLightText l:w-[115px] l:text-[13px] mid-sm:text-[10px] mid-sm:w-[105px] ml-[5px] text-sm font-[500]">
-						{dateConverter(releaseDate)}
+						{releaseDate == "" ||
+						releaseDate == null ||
+						releaseDate == undefined
+							? "No Release Date"
+							: dateConverter(releaseDate)}
 					</h3>
 				</div>
 			</div>

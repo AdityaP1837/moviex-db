@@ -24,6 +24,7 @@ const Trending = () => {
 				activeTab={activeTab}
 				onTabChange={onTabChange}
 				values={["day", "week"]}
+				mediaType={null}
 			/>
 		</div>
 	);

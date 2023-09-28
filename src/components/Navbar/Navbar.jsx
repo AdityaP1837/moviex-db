@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { FaBars, FaHome, FaSearch, FaTimes } from "react-icons/fa";
+import { FaBars, FaSearch, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { images } from "../../assests/images";
-import { BiCalendar, BiSolidMoviePlay } from "react-icons/bi";
-import { PiTelevisionSimpleFill } from "react-icons/pi";
+import Sidebar from "../sidebar/Sidebar";
+import SearchBar from "../searchbar/SearchBar";
 
 const Navbar = ({
 	sidebarActive,
@@ -11,6 +10,7 @@ const Navbar = ({
 	toggleSidebarNotActive,
 }) => {
 	const navigate = useNavigate();
+	const [activeSidebar, setActiveSidebar] = useState("");
 	return (
 		<header className="h-[60px] l:h-[50px] mid-sm:h-[40px]">
 			<nav className="flex items-center bg-black-2 p-[10px] justify-between">
@@ -20,22 +20,13 @@ const Navbar = ({
 				>
 					<img
 						className="w-[40px] l:w-[29px] mid-sm:w-[24px]"
-						src={images.logo}
+						src="/movix-logo.png"
 						alt=""
 					/>
 					MovieFlix DB
 				</h1>
-				<div className="mid-l:hidden search-box bg-blue-dark p-[6px] flex rounded-[10px] w-[400px] items-center justify-between">
-					<input
-						className="bg-transparent border-none text-blue-sky w-[90%] p-[5px] outline-none text-[0.99rem]"
-						type="text"
-						placeholder="Search Something....."
-					/>
-					<button className="bg-[#068FFF] text-center w-[30px] h-[30px] border-none rounded-[50%] cursor-pointer">
-						<span>
-							<FaSearch className="w-[100%] mx-auto" />
-						</span>
-					</button>
+				<div className="mid-l:hidden search-box w-[400px]">
+					<SearchBar />
 				</div>
 				<ul className="flex mid-l:hidden items-center list-none">
 					<li
@@ -59,21 +50,38 @@ const Navbar = ({
 				</ul>
 				<div className="hidden mid-l:flex items-center gap-3">
 					<div className="mobileSearch">
-						<button className="bg-[#068FFF] text-center w-[30px] h-[30px] border-none rounded-[50%] cursor-pointer">
+						<button
+							onClick={() => {
+								!sidebarActive
+									? toggleSidebarActive()
+									: toggleSidebarNotActive();
+								setActiveSidebar("search");
+							}}
+							className="bg-[#068FFF] text-center w-[30px] h-[30px] border-none rounded-[50%] cursor-pointer"
+						>
 							<span>
-								<FaSearch className="w-[100%] mx-auto" />
+								{sidebarActive && activeSidebar == "search" ? (
+									<FaTimes className="w-full mx-auto" />
+								) : (
+									<FaSearch className="w-[100%] mx-auto" />
+								)}
 							</span>
 						</button>
 					</div>
 					<h2
 						onClick={() => {
 							!sidebarActive ? toggleSidebarActive() : toggleSidebarNotActive();
+							setActiveSidebar("simple");
 						}}
 						className={`sidebarm text-[24px] mid-sm:text-[20px] text-pink cursor-pointer ${
 							sidebarActive ? "sidebarActive" : ""
 						}`}
 					>
-						{sidebarActive ? <FaTimes /> : <FaBars />}
+						{sidebarActive && activeSidebar == "simple" ? (
+							<FaTimes />
+						) : (
+							<FaBars />
+						)}
 					</h2>
 				</div>
 			</nav>
@@ -82,26 +90,11 @@ const Navbar = ({
 					sidebarActive ? "fixed" : "hidden"
 				} mobileSearchBar w-full z-[1]`}
 			>
-				<div className="bg-pink mx-1 mt-[10px] rounded-[10px] py-[5px]">
-					<ul className="flex items-center justify-between list-none gap-y-[50px] ">
-						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
-							<FaHome />
-							<span className="text-[18px] text-white">Home</span>
-						</li>
-						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
-							<BiSolidMoviePlay />
-							<span className="text-[18px] text-white">Browse Movies</span>
-						</li>
-						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
-							<PiTelevisionSimpleFill />
-							<span className="text-[18px] text-white">Browse Tv Shows</span>
-						</li>
-						<li className="text-blue-dark text-3xl text-center mx-auto flex flex-col items-center gap-1">
-							<BiCalendar />
-							<span className="text-[18px] text-white">Upcoming</span>
-						</li>
-					</ul>
-				</div>
+				{activeSidebar == "simple" ? (
+					<Sidebar type={"simple"} />
+				) : (
+					<Sidebar type={"search"} />
+				)}
 			</div>
 		</header>
 	);

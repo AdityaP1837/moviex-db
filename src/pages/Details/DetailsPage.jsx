@@ -39,6 +39,8 @@ const DetailsPage = () => {
 		setVideoId(null);
 	};
 
+    console.log(credits);
+
 	return (
 		<div className={`w-[100%] h-[100vh]`}>
 			<div className="backdrop w-full h-full absolute top-[60px] left-0 opacity-10 overflow-hidden z-[2]">

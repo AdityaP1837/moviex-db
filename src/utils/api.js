@@ -19,11 +19,3 @@ export const fetchApiData = async (url, params) => {
         return error;
     }
 }
-
-// fetchApiData('/movie/1002185')
-//         .then(response => {
-//             console.log(response)
-//         })
-//         .catch((err) => {
-//             console.log("lol")
-//         })

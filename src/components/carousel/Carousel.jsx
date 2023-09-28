@@ -14,7 +14,15 @@ const skItem = () => {
 	);
 };
 
-const Carousel = ({ data, loading, title, activeTab, onTabChange, values }) => {
+const Carousel = ({
+	data,
+	loading,
+	title,
+	activeTab,
+	onTabChange,
+	values,
+	mediaType,
+}) => {
 	const slider = useRef(null);
 	return (
 		<>
@@ -45,7 +53,7 @@ const Carousel = ({ data, loading, title, activeTab, onTabChange, values }) => {
 											: item.release_date
 									}
 									rating={item.vote_average}
-									mediaType={item.media_type}
+									mediaType={mediaType == null ? item.media_type : mediaType}
 									id={item.id}
 								/>
 							))}
