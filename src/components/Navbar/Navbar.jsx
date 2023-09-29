@@ -13,7 +13,7 @@ const Navbar = ({
 	const [activeSidebar, setActiveSidebar] = useState("");
 	return (
 		<header className="h-[60px] l:h-[50px] mid-sm:h-[40px]">
-			<nav className="fixed flex items-center bg-black-2 p-[10px] justify-between">
+			<nav className="flex items-center bg-black-2 p-[10px] justify-between">
 				<h1
 					onClick={() => navigate("/")}
 					className="mid-xl:text-[28px] l:text-[22px] mid-sm:text-[19px] font-[700] text-pink text-[30px] flex items-center gap-[5px] cursor-pointer"
