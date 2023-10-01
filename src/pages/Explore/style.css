@@ -1,0 +1,65 @@
+.filters {
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+}
+
+.dropdown-container.genresData {
+	width: 100%;
+}
+.dropdown-container.sortBy {
+	width: 100%;
+	flex-shrink: 0;
+}
+
+.genres__control {
+	border: 0;
+	outline: 0;
+	box-shadow: none;
+	background-color: var(--black-light);
+	border-radius: 20px;
+}
+.genres__control.react-select__value-container,
+.genres__control.react-select__placeholder,
+.genres__control.react-select__input-container {
+	color: white;
+	margin: 0 10px;
+}
+.genres__control.react-select__single-value {
+	color: white;
+}
+.genres__control.react-select__multi-value {
+	background-color: #020c1b;
+	border-radius: 10px;
+}
+.genres__control.react-select__multi-value__label {
+	color: white;
+}
+.genres__control.react-select__multi-value__remove {
+	background-color: transparent;
+	color: white;
+	cursor: pointer;
+}
+.genres__control.react-select__multi-value__remove:hover {
+	color: #1c4b91;
+}
+/* .react-select__menu {
+    top: 40px;
+    margin: 0;
+    padding: 0;
+}
+}
+} */
+
+@media only screen and (min-width: 768px) {
+	.filters {
+		flex-direction: row;
+	}
+	.dropdown-container.genresData {
+		max-width: 500px;
+		min-width: 250px;
+	}
+	.dropdown-container.sortBy {
+		width: 250px;
+	}
+}

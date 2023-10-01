@@ -1,0 +1,42 @@
+.moviecard {
+	width: calc(50% - 5px);
+	margin-bottom: 25px;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.textBlock {
+color: white;
+display: flex;
+flex-direction: column;
+.title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 24px;
+    @include ellipsis(1);
+    @include md {
+        font-size: 20px;
+    }
+}
+.date {
+    font-size: 14px;
+    opacity: 0.5;
+}
+}
+&:hover {
+.posterBlock {
+    opacity: 0.5;
+}
+}
+
+@media only screen and (min-width: 768px) {
+	.moviecard {
+		width: calc(25% - 15px);
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.moviecard {
+		width: calc(20% - 16px);
+	}
+}

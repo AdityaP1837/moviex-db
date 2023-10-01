@@ -39,11 +39,9 @@ const DetailsPage = () => {
 		setVideoId(null);
 	};
 
-    console.log(credits);
-
 	return (
 		<div className={`w-[100%] h-[100vh]`}>
-			<div className="backdrop w-full h-full absolute top-[60px] left-0 opacity-10 overflow-hidden z-[2]">
+			<div className="backdrop w-full h-full absolute top-[60px] left-0 opacity-10 overflow-hidden">
 				<img
 					className="object-cover w-full h-full"
 					src={"https://image.tmdb.org/t/p/original" + data.backdrop_path}
@@ -155,9 +153,11 @@ const DetailsPage = () => {
 										<>
 											<h4 className="item mr-[5px] opacity-100">Created By:</h4>
 											<h4 className="item opacity-50">
-												{data?.created_by?.map((c) => (
-													<span key={c.id}>{c.name}</span>
-												))}
+												<span>
+													{data?.created_by
+														?.map((item) => item.name)
+														.join(", ")}
+												</span>
 											</h4>
 										</>
 									) : (

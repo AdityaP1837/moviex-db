@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
 import SearchResults from "./pages/SearchResults/SearchResults";
-import ContentWrapper from "./components/ContentWrapper/ContentWrapper";
+import BrowsePage from "./pages/Explore/BrowsePage";
 
 function App() {
 	const [sidebarActive, setSidebarActive] = useState(false);
@@ -29,16 +29,8 @@ function App() {
 				<div className="content">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
-						<Route path="/movies" element={<h1>Lol</h1>} />
-						<Route
-							path="/search/:query"
-							element={
-								<ContentWrapper
-									id={"SearchedData"}
-									content={<SearchResults />}
-								/>
-							}
-						/>
+						<Route path="/explore/:mediaType" element={<BrowsePage />} />
+						<Route path="/search/:query" element={<SearchResults />} />
 						<Route path="/:mediaType/:id" element={<DetailsPage />} />
 					</Routes>
 				</div>
@@ -47,39 +39,5 @@ function App() {
 	);
 }
 
-
-// iso_639_1
-// :
-// "en"
-// iso_3166_1
-// :
-// "US"
-// name
-// :
-// "Official Final Trailer"
-// key
-// :
-// "4wxyy8Rcz4k"
-// site
-// :
-// "YouTube"
-// size
-// :
-// 2160
-// type
-// :
-// "Trailer"
-// official
-// :
-// true
-
-// published_at
-// :
-// "2023-07-11T20:00:01.000Z"
-// id
-// :
-// 
-// new entry
-// : 
 
 export default App

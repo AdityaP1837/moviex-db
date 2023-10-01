@@ -4,6 +4,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "../../components/movieCard/MovieCard";
 import LoaderIcon from "../../components/loaderIcon/LoaderIcon";
 import { fetchApiData } from "../../utils/api";
+import ResultsMovieCard from "../../components/movieCard/ResultsMovieCard";
+import "./style.css";
 
 const SearchResults = () => {
 	const [data, setData] = useState(null);
@@ -45,14 +47,14 @@ const SearchResults = () => {
 			{loading ? (
 				<LoaderIcon size={25} />
 			) : (
-				<div className="searchcontent w-full max-w-[1200px] mx-auto px-[20px] min-lg:px-[10px] min-sl:max-w-[600px] lg:max-w-[400px]">
+				<div className="searchcontent w-full max-w-[1200px] mx-auto px-[20px] min-lg:px-[10px]">
 					<div className="title my-5">
-						<h4 className="text-white text-3xl lg:text-2xl">
+						<h4 className="text-white text-3xl min-l:text-[18px]">
 							Search Results of '{query}':
 						</h4>
 					</div>
 					<InfiniteScroll
-						className="flex flex-row flex-wrap gap-[10px] mb-[50px] min-sl:gap-[20px] lg:row-gap-[15px] lg:column-gap-[60px]"
+						className="infinite-scroll"
 						dataLength={data?.results?.length || []}
 						next={fetchNextPageData}
 						hasMore={pageNum <= data?.total_pages}
@@ -61,7 +63,7 @@ const SearchResults = () => {
 						{data?.results.map((item, index) => {
 							if (item.media_type == "person") return;
 							return (
-								<MovieCard
+								<ResultsMovieCard
 									key={index}
 									imgUrl={
 										item.poster_path == undefined || item.poster_path == null
@@ -74,7 +76,6 @@ const SearchResults = () => {
 											? item.first_air_date
 											: item.release_date
 									}
-									rating="no"
 									mediaType={item.media_type}
 									id={item.id}
 								/>
