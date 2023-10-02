@@ -37,7 +37,7 @@ const Navbar = ({
 					</li>
 					<li
 						className="mx-[15px] font-[600] hover:opacity-[0.8] hover:transition-all .4s ease-linear text-[20px] text-pink cursor-pointer"
-						onClick={() => navigate("/explore/movies")}
+						onClick={() => navigate("/explore/movie")}
 					>
 						Browse Movies
 					</li>
@@ -46,9 +46,6 @@ const Navbar = ({
 						className="mx-[15px] font-[600] hover:opacity-[0.8] hover:transition-all .4s ease-linear text-[20px] text-pink cursor-pointer"
 					>
 						Browse Tv Shows
-					</li>
-					<li className="mx-[15px] font-[600] hover:opacity-[0.8] hover:transition-all .4s ease-linear text-[20px] text-pink cursor-pointer">
-						Upcoming
 					</li>
 				</ul>
 				<div className="hidden mid-l:flex items-center gap-3">

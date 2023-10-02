@@ -1,5 +1,5 @@
 import React from "react";
-import { BiCalendar, BiSolidMoviePlay } from "react-icons/bi";
+import { BiSolidMoviePlay } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { PiTelevisionBold } from "react-icons/pi";
 import SearchBar from "../searchbar/SearchBar";
@@ -12,7 +12,9 @@ const Sidebar = ({ type }) => {
 			{type == "simple" ? (
 				<ul className="flex items-center flex-wrap justify-between list-none gap-y-[50px] min-l:flex-col l:gap-y-[25px]">
 					<li
-						onClick={() => navigate("/")}
+						onClick={() => {
+							navigate("/");
+						}}
 						className="text-white text-3xl text-center mx-auto flex flex-col items-center gap-1 cursor-pointer transition-opacity .3s ease-in hover:opacity-70 mid-xl:text-2xl min-l:w-[250px] min-l:border-b-[2px] l:text-xl"
 					>
 						<FaHome />
@@ -21,7 +23,7 @@ const Sidebar = ({ type }) => {
 						</span>
 					</li>
 					<li
-						onClick={() => navigate("/movies")}
+						onClick={() => navigate("/explore/movie")}
 						className="text-white text-3xl text-center mx-auto flex flex-col items-center gap-1 cursor-pointer transition-opacity .3s ease-in hover:opacity-70 mid-xl:text-2xl min-l:w-[250px] min-l:border-b-[2px] l:text-xl"
 					>
 						<BiSolidMoviePlay />
@@ -29,16 +31,13 @@ const Sidebar = ({ type }) => {
 							Browse Movies
 						</span>
 					</li>
-					<li className="text-white text-3xl text-center mx-auto flex flex-col items-center gap-1 cursor-pointer transition-opacity .3s ease-in hover:opacity-70 mid-xl:text-2xl min-l:w-[250px] min-l:border-b-[2px] l:text-xl">
+					<li
+						onClick={() => navigate("/explore/tv")}
+						className="text-white text-3xl text-center mx-auto flex flex-col items-center gap-1 cursor-pointer transition-opacity .3s ease-in hover:opacity-70 mid-xl:text-2xl min-l:w-[250px] min-l:border-b-[2px] l:text-xl"
+					>
 						<PiTelevisionBold />
 						<span className="text-[18px] text-white mid-xl:text-[16px]">
 							Browse Tv Shows
-						</span>
-					</li>
-					<li className="text-white text-3xl text-center mx-auto flex flex-col items-center gap-1 cursor-pointer transition-opacity .3s ease-in hover:opacity-70 mid-xl:text-2xl min-l:w-[250px] min-l:border-b-[2px] l:text-xl">
-						<BiCalendar />
-						<span className="text-[18px] text-white mid-xl:text-[16px]">
-							Upcoming
 						</span>
 					</li>
 				</ul>

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Select from "react-select";
-// import LoaderIcon from "../../../components/loaderIcon/LoaderIcon";
-// import InfiniteScroll from "react-infinite-scroll-component";
-// import ResultsMovieCard from "../../../components/movieCard/ResultsMovieCard";
 import "./style.css";
-
-const capitalize = (text) => {
-	return text.charAt(0).toUpperCase() + text.slice(1);
-};
+import LoaderIcon from "../../components/loaderIcon/LoaderIcon";
+import InfiniteScroll from "react-infinite-scroll-component";
+import useFetchData from "../../hooks/useFetchData";
+import { fetchApiData } from "../../utils/api";
+import ResultsMovieCard from "../../components/movieCard/ResultsMovieCard";
 
 let filters = {};
 
@@ -28,41 +26,143 @@ const sortbyData = [
 const BrowsePage = () => {
 	const [sortby, setSortBy] = useState(null);
 	const [genres, setGenres] = useState(null);
-
+	const [pageNum, setPageNum] = useState(1);
+	const [data, setData] = useState(null);
+	const [loading, setLoading] = useState(false);
 	const { mediaType } = useParams();
+
+	const { data: genresData } = useFetchData(`/genre/${mediaType}/list`);
+
+	const fetchInitialData = () => {
+		setLoading(true);
+		fetchApiData(`/discover/${mediaType}`, filters).then((res) => {
+			setData(res);
+			setPageNum((prev) => prev + 1);
+			setLoading(false);
+		});
+	};
+
+	const fetchNextPageData = () => {
+		fetchApiData(`/discover/${mediaType}?page=${pageNum}`, filters).then(
+			(res) => {
+				if (data?.results) {
+					setData({
+						...data,
+						results: [...data?.results, ...res.results],
+					});
+				} else {
+					setData(res);
+				}
+				setPageNum((prev) => prev + 1);
+			}
+		);
+	};
+
+	useEffect(() => {
+		filters = {};
+		setData(null);
+		setPageNum(1);
+		setSortBy(null);
+		setGenres(null);
+		fetchInitialData();
+	}, [mediaType]);
+
+	const onChange = (selectedItems, action) => {
+		if (action.name === "sortby") {
+			setSortBy(selectedItems);
+			if (action.action !== "clear") {
+				filters.sort_by = selectedItems.value;
+			} else {
+				delete filters.sort_by;
+			}
+		}
+
+		if (action.name === "genres") {
+			setGenres(selectedItems);
+			if (action.action !== "clear") {
+				let genreId = selectedItems.map((g) => g.id);
+				genreId = JSON.stringify(genreId).slice(1, -1);
+				filters.with_genres = genreId;
+			} else {
+				delete filters.with_genres;
+			}
+		}
+
+		setPageNum(1);
+		fetchInitialData();
+	};
+
 	return (
-		<div className="explorePage py-2">
-			<div className="explorecontent w-full max-w-[1200px] mx-auto px-[20px] min-lg:px-[10px] min-sl:max-w-[600px] lg:max-w-[400px] l:max-w-[350px]">
-				<div className="exploreOptions flex items-center justify-between flex-row mb-[25px]">
-					<div className="title my-5">
-						<h4 className="text-white text-3xl min-l:text-[18px]">
-							Browse {capitalize(mediaType)}:
-						</h4>
+		<div className="explorePage">
+			<div className="explorecontent">
+				<div className="exploreOptions">
+					<div className="Explore__title">
+						Browse {mediaType === "tv" ? "Tv Shows" : "Movies"}:
 					</div>
 
 					<div className="filters">
 						<Select
+							isMulti
 							name="genres"
 							value={genres}
-							isClearable={true}
-							options={sortbyData}
-							placeholder="Sort By"
-							className="dropdown-container genresData"
-							classNamePrefix="genres"
+							closeMenuOnSelect={false}
+							options={genresData?.genres}
+							onChange={onChange}
+							getOptionLabel={(option) => option.name}
+							getOptionValue={(option) => option.id}
+							placeholder="Select Genres"
+							className="react-select-container genresDD"
+							classNamePrefix="react-select"
 						/>
 						<Select
 							name="sortby"
 							value={sortby}
 							isClearable={true}
 							options={sortbyData}
+							onChange={onChange}
 							placeholder="Sort By"
-							className="dropdown-container sortBy"
-							classNamePrefix="sortBy"
+							className="react-select-container sortbyDD"
+							classNamePrefix="react-select"
 						/>
 					</div>
 				</div>
-
-				<div className="exploreData"></div>
+				{loading && <LoaderIcon size={25} />}
+				<>
+					{data?.results?.length > 0 ? (
+						<InfiniteScroll
+							className="exploreData__container"
+							dataLength={data?.results?.length || []}
+							next={fetchNextPageData}
+							hasMore={pageNum <= data?.total_pages}
+							loader={<LoaderIcon size={25} />}
+						>
+							{data?.results?.map((item, index) => {
+								if (item.media_type === "person") return;
+								return (
+									<ResultsMovieCard
+										key={index}
+										imgUrl={
+											item.poster_path == undefined || item.poster_path == null
+												? "/no-poster.png"
+												: "https://image.tmdb.org/t/p/original" +
+												  item.poster_path
+										}
+										title={item.title == undefined ? item.name : item.title}
+										releaseDate={
+											item.release_date == undefined
+												? item.first_air_date
+												: item.release_date
+										}
+										mediaType={mediaType}
+										id={item.id}
+									/>
+								);
+							})}
+						</InfiniteScroll>
+					) : (
+						<span className="resultNotFound">Sorry, Results not found!</span>
+					)}
+				</>
 			</div>
 		</div>
 	);

@@ -58,7 +58,7 @@ const SearchResults = () => {
 						dataLength={data?.results?.length || []}
 						next={fetchNextPageData}
 						hasMore={pageNum <= data?.total_pages}
-						loader={<LoaderIcon />}
+						loader={<LoaderIcon size={25} />}
 					>
 						{data?.results.map((item, index) => {
 							if (item.media_type == "person") return;
